@@ -11,15 +11,18 @@ function sendMessage() {
   const message = input.value.trim();
   if (!message) return;
 
-  addMessage("Ты", message);
+  addMessage("user", message);
   input.value = "";
 
   setTimeout(() => {
-    addMessage("Бот", "Привет! я твой чат 🙂");
+    addMessage("bot", "Привет! Скоро я стану умным ИИ 🤖");
   }, 600);
 }
 
-function addMessage(author, text) {
-  chat.textContent += `${author}: ${text}\n\n`;
+function addMessage(type, text) {
+  const msg = document.createElement("div");
+  msg.className = "message " + type;
+  msg.textContent = text;
+  chat.appendChild(msg);
   chat.scrollTop = chat.scrollHeight;
 }
